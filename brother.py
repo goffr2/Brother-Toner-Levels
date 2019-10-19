@@ -67,29 +67,13 @@ for x in content:
         soup = BeautifulSoup(response.text, "html.parser")
 	Model = soup.findAll('h1')[0].text
 
-	
-	try:
-		Office = soup_contact.find('input',{'id':'Ba3d'}).get('value')
-        except AttributeError:
-                try:
-			Office = soup_contact.find('input',{'id':'Nf'}).get('value')
-                except AttributeError:
-                        try:
-				Office = soup_contact.find('input',{'id':'B47d'}).get('value')
-                        except AttributeError:
-				try:
-					Office = soup_contact.find('input',{'id':'B738'}).get('value')
-				except AttributeError:
-					try:
-						Office = soup_contact.find('input',{'id':'B11ad'}).get('value')
-					except AttributeError:
-                        			try:
-							Office = soup_contact.find('input',{'id':'B1430'}).get('value')
-						except AttributeError:
-							Office = "Location not Avaible"
 
-
+	Office =  soup.find('li',{'class':'location'}).get_text()
+	Office = Office.replace(u'\xa0', u' ')
+	if Office == "Location:":
 	
+		Office = "Location:N/A"
+
 	Black_Remaining = None
 	Cyan_Remaining = None
 	Magenta_Remaining = None
@@ -182,7 +166,7 @@ for x in content:
 		message = message + "<tr>"
 		Number_of_Cells = 0
 	message = message +  "<td><p>Model: " + Model + "</p>"
-	message = message +  "<p>Location: "+ Office + "</p>"
+	message = message +   Office + "</p>"
 	message = message +  "<p>IP Address: <a href='http://" + x + "'target='_blank'>"+x+"</a></p>"
 	message = message + "<p>=========================</p>"
 	message = message + "<p>======Toner Remaining======</p>"
