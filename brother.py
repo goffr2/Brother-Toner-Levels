@@ -86,7 +86,7 @@ for x in content:
                         			try:
 							Office = soup_contact.find('input',{'id':'B1430'}).get('value')
 						except AttributeError:
-							Office = "Fuck if I know"
+							Office = "Location Not Found"
 
 
 	
