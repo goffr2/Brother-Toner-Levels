@@ -86,7 +86,7 @@ for x in content:
                         			try:
 							Office = soup_contact.find('input',{'id':'B1430'}).get('value')
 						except AttributeError:
-							Office = "Location Not Found"
+							Office = "Location not Avaible"
 
 
 	
@@ -183,7 +183,7 @@ for x in content:
 		Number_of_Cells = 0
 	message = message +  "<td><p>Model: " + Model + "</p>"
 	message = message +  "<p>Location: "+ Office + "</p>"
-	message = message +  "<p>IP Address: " + x + "</p>"
+	message = message +  "<p>IP Address: <a href='http://" + x + "'target='_blank'>"+x+"</a></p>"
 	message = message + "<p>=========================</p>"
 	message = message + "<p>======Toner Remaining======</p>"
 	message = message + "<p>=========================</p><ul>"
