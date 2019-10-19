@@ -60,10 +60,7 @@ print "Processing Please Wait"
 Number_of_Cells = 0
 for x in content:
         url='http://' + x +'/general/status.html'
-        contact ='http://' + x + '/general/contact.html'
         response = requests.get(url)
-        response1 = requests.get(contact)
-        soup_contact = BeautifulSoup(response1.text, "html.parser")
         soup = BeautifulSoup(response.text, "html.parser")
 	Model = soup.findAll('h1')[0].text
 
