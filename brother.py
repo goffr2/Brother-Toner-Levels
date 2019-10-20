@@ -162,6 +162,22 @@ for x in content:
 
 		message = message + "<tr>"
 		Number_of_Cells = 0
+
+	Order_Link = " "
+
+	if Model == "MFC-9340CDW" or Model == "MFC-9330CDW" or Model == "HL-3170CDW series":
+		Order_Link = "<a href='https://www.amazon.com/s?k=TN225&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN221 </a>"
+	if Model == "MFC-L8900CDW series":
+		Order_Link = "<a href='https://www.amazon.com/s?k=MFC-L8900CDW+Toner&i=office-products&ref=nb_sb_noss' target='_blank'> Order TN436 </a>"
+	if Model == "MFC-L3770CDW series":
+		Order_Link = "<a href='https://www.amazon.com/s?k=TN+227&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN227 </a>"
+	if Model =="MFC-L2750DW series":
+		Order_Link = "<a href='https://www.amazon.com/s?k=TN760&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN760 </a>"
+	if Model =="HL-L5200DW series":
+		Order_Link = "<a href='https://www.amazon.com/s?k=TN850&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN850 </a>"
+	if Model =="MFC-L2740DW series":
+		Order_Link = "<a href='https://www.amazon.com/s?k=tn660&i=office-products' target='_blank'> Order TN660 </a>"
+
 	message = message +  "<td><p>Model: " + Model + "</p>"
 	message = message +   Office + "</p>"
 	message = message +  "<p>IP Address: <a href='http://" + x + "'target='_blank'>"+x+"</a></p>"
@@ -189,7 +205,7 @@ for x in content:
 		else:
 			message = message +  "<li>Yellow Toner Remaining: " + str(Yellow_Remaining) + "</li>"
 
-	message = message + "</ul></td>"
+	message = message + "</ul><p>" + Order_Link + "</p></td>"
 	Number_of_Cells = Number_of_Cells + 1
 message = message + "<tr><table></body></html>"
 write_out.write (message)
