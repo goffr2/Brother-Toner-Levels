@@ -63,7 +63,7 @@ for x in content:
         url='http://' + x +'/general/status.html'
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
-	Model = soup.findAll('h1')[0].text
+	Model = soup.find('title').text
 
 
 	Office =  soup.find('li',{'class':'location'}).get_text()
@@ -77,85 +77,42 @@ for x in content:
 	Magenta_Remaining = None
 	Yellow_Remaining = None
 
-	if Model == "MFC-9340CDW" or Model =="MFC-L8900CDW series" or Model == "MFC-9330CDW" or Model == "MFC-L3770CDW series":
+	if Model == "Brother MFC-9340CDW" or Model =="Brother MFC-L8900CDW series" or Model == "Brother MFC-9330CDW" or Model == "Brother MFC-L3770CDW series" or Model == "Brother HL-3170CDW series":
 
-		try:
-			Black = soup.findAll('img')[1]
-                	Bheight = Black ['height']
-                	Bheight = Bheight.strip('px')
-                	Bheight = float(Bheight)
-                	Bprecent = (Bheight/56) * 100
-                	Black_Remaining = round(Bprecent,0)
+		table = soup.find('table',{'id':'inkLevel'})
+		Toner = table.find_all('img',{'class':'tonerremain'})
+		Black = Toner[0].get('height')
+		Bheight = Black.strip('px')
+		Bheight = float(Bheight)
+		Bprecent = (Bheight/56) * 100
+		Black_Remaining = round(Bprecent,0)
 
-			Cyan = soup.findAll('img')[2]
-        		Cheight = Cyan ['height']
-        		Cheight = Cheight.strip('px')
-        		Cheight = float(Cheight)
-        		Cprecent = (Cheight/56) * 100
-        		Cyan_Remaining = round(Cprecent,0)
+		Cyan = Toner[1].get('height')
+		Cheight = Cyan.strip('px')
+		Cheight = float(Cheight)
+		Cprecent = (Cheight/56) * 100
+		Cyan_Remaining = round(Cprecent,0)
 
-                	Magenta = soup.findAll('img')[3]
-                	Mheight = Magenta ['height']
-                	Mheight = Mheight.strip('px')
-                	Mheight = float(Mheight)
-                	Mprecent = (Mheight/56) * 100
-                	Magenta_Remaining = round(Mprecent,0)
+		Magenta = Toner[2].get('height')
+		Mheight = Magenta.strip('px')
+		Mheight = float(Mheight)
+		Mprecent = (Mheight/56) * 100
+		Magenta_Remaining = round(Mprecent,0)
 
-                	Yellow = soup.findAll('img')[4]
-                	Yheight = Yellow ['height']
-                	Yheight = Yheight.strip('px')
-                	Yheight = float(Yheight)
-                	Yprecent = (Yheight/56) * 100
-                	Yellow_Remaining = round(Yprecent,0)
-		
-		except KeyError:
+		Yellow = Toner[3].get('height')
+		Yheight = Yellow.strip('px')
+		Yheight = float(Yheight)
+		Yprecent = (Yheight/56) * 100
+		Yellow_Remaining = round(Yprecent,0)
 
-                        Black = soup.findAll('img')[2]
-                        Bheight = Black ['height']
-                        Bheight = Bheight.strip('px')
-                        Bheight = float(Bheight)
-                        Bprecent = (Bheight/56) * 100
-                        Black_Remaining = round(Bprecent,0)
+                        
+	if Model == "Brother MFC-L2750DW series" or Model == "Brother HL-L5200DW series"or Model == "Brother MFC-L2740DW series" or Model =="Brother DCP-L2540DW series":
 
-                        Cyan = soup.findAll('img')[3]
-                        Cheight = Cyan ['height']
-                        Cheight = Cheight.strip('px')
-                        Cheight = float(Cheight)
-                        Cprecent = (Cheight/56) * 100
-                        Cyan_Remaining = round(Cprecent,0)
-
-                        Magenta = soup.findAll('img')[4]
-                        Mheight = Magenta ['height']
-                        Mheight = Mheight.strip('px')
-                        Mheight = float(Mheight)
-                        Mprecent = (Mheight/56) * 100
-                        Magenta_Remaining = round(Mprecent,0)
-
-                        Yellow = soup.findAll('img')[5]
-                        Yheight = Yellow ['height']
-                        Yheight = Yheight.strip('px')
-                        Yheight = float(Yheight)
-                        Yprecent = (Yheight/56) * 100
-                        Yellow_Remaining = round(Yprecent,0)
-
-	if Model == "MFC-L2750DW series" or Model == "HL-3170CDW series" or Model == "HL-L5200DW series"or Model == "MFC-L2740DW series" or Model =="DCP-L2540DW series":
-		
-		try:
-	                Black = soup.findAll('img')[2]
-        	        Bheight = Black ['height']
-               		Bheight = Bheight.strip('px')
-                	Bheight = float(Bheight)
-                	Bprecent = (Bheight/56) * 100
-                	Black_Remaining = round(Bprecent,0)
-
-		except KeyError:
-			Black = soup.findAll('img')[1]
-                	Bheight = Black ['height']
-                	Bheight = Bheight.strip('px')
-               		Bheight = float(Bheight)
-                	Bprecent = (Bheight/56) * 100
-                	Black_Remaining = round(Bprecent,0)
-
+		Bheight = soup.find('img',{'class':'tonerremain'}).get('height')
+               	Bheight = Bheight.strip('px')
+                Bheight = float(Bheight)
+                Bprecent = (Bheight/56) * 100
+                Black_Remaining = round(Bprecent,0)
 
 
 
@@ -166,17 +123,17 @@ for x in content:
 
 	Order_Link = " "
 
-	if Model == "MFC-9340CDW" or Model == "MFC-9330CDW" or Model == "HL-3170CDW series":
+	if Model == "Brother MFC-9340CDW" or Model == "Brother MFC-9330CDW" or Model == "Brother HL-3170CDW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN225&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN221 </a>"
-	if Model == "MFC-L8900CDW series":
+	if Model == "Brother MFC-L8900CDW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=MFC-L8900CDW+Toner&i=office-products&ref=nb_sb_noss' target='_blank'> Order TN436 </a>"
-	if Model == "MFC-L3770CDW series":
+	if Model == "Brother MFC-L3770CDW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN+227&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN227 </a>"
-	if Model =="MFC-L2750DW series":
+	if Model =="Brother MFC-L2750DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN760&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN760 </a>"
-	if Model =="HL-L5200DW series":
+	if Model =="Brother HL-L5200DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN850&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN850 </a>"
-	if Model =="MFC-L2740DW series" or Model == "DCP-L2540DW series":
+	if Model =="Brother MFC-L2740DW series" or Model == "Brother DCP-L2540DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=tn660&i=office-products' target='_blank'> Order TN660 </a>"
 
 	message = message +  "<td><p>Model: " + Model + "</p>"
