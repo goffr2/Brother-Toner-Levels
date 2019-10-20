@@ -6,7 +6,8 @@ then formats and displays that text in a webpage.
   
 To use this script install python, pip, and use pip to install requests,
 urllib3, and bs4. Make sure your ip_list.txt file is in the same Directory
-as your script. The script will then generate a HTML page and save the page 
+as your script as well as the Monochrome_Printers.list and Color_Printers.list files.
+The script will then generate a HTML page and save the page 
 in the Directory you have listed in the path.txt file or if that file  does 
 not exist it will place it in the same directory as the python script.
  
