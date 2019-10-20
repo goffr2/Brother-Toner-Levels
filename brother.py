@@ -18,7 +18,8 @@
 # - HL-3170CDW series
 # - HL-L5200DW series
 # - MFC-L2740DW series
-# 
+# - DCP-L2540DW series 
+#
 # More models can be added to the script as needed
 # If you have a model you want added please send me the
 # toner status and contact pages
@@ -137,7 +138,7 @@ for x in content:
                         Yprecent = (Yheight/56) * 100
                         Yellow_Remaining = round(Yprecent,0)
 
-	if Model == "MFC-L2750DW series" or Model == "HL-3170CDW series" or Model == "HL-L5200DW series"or Model == "MFC-L2740DW series":
+	if Model == "MFC-L2750DW series" or Model == "HL-3170CDW series" or Model == "HL-L5200DW series"or Model == "MFC-L2740DW series" or Model =="DCP-L2540DW series":
 		
 		try:
 	                Black = soup.findAll('img')[2]
@@ -175,7 +176,7 @@ for x in content:
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN760&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN760 </a>"
 	if Model =="HL-L5200DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN850&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN850 </a>"
-	if Model =="MFC-L2740DW series":
+	if Model =="MFC-L2740DW series" or Model == "DCP-L2540DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=tn660&i=office-products' target='_blank'> Order TN660 </a>"
 
 	message = message +  "<td><p>Model: " + Model + "</p>"
