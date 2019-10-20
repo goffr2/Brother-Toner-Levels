@@ -32,6 +32,20 @@ import time
 import datetime
 from bs4 import BeautifulSoup
 
+
+
+
+with open('Color_Printers.list') as f:
+    Color_Printers = f.readlines()
+# you may also want to remove whitespace characters like `\n` at the end of each line
+Color_Printers = [x.strip() for x in Color_Printers] 
+
+with open('Monochrome_Printers.list') as f:
+    Monochrome_Printers = f.readlines()
+# you may also want to remove whitespace characters like `\n` at the end of each line
+Monochrome_Printers = [x.strip() for x in Monochrome_Printers]
+
+
 try: 
 	f=open("path.txt", "r")
 	dirpath =f.read()
@@ -77,7 +91,7 @@ for x in content:
 	Magenta_Remaining = None
 	Yellow_Remaining = None
 
-	if Model == "Brother MFC-9340CDW" or Model =="Brother MFC-L8900CDW series" or Model == "Brother MFC-9330CDW" or Model == "Brother MFC-L3770CDW series" or Model == "Brother HL-3170CDW series":
+	if Model in Color_Printers:
 
 		table = soup.find('table',{'id':'inkLevel'})
 		Toner = table.find_all('img',{'class':'tonerremain'})
@@ -106,7 +120,7 @@ for x in content:
 		Yellow_Remaining = round(Yprecent,0)
 
                         
-	if Model == "Brother MFC-L2750DW series" or Model == "Brother HL-L5200DW series"or Model == "Brother MFC-L2740DW series" or Model =="Brother DCP-L2540DW series":
+	if Model in Monochrome_Printers:
 
 		Bheight = soup.find('img',{'class':'tonerremain'}).get('height')
                	Bheight = Bheight.strip('px')
