@@ -37,11 +37,14 @@ from bs4 import BeautifulSoup
 
 with open('Color_Printers.list') as f:
     Color_Printers = f.readlines()
+
+f.close()
 # you may also want to remove whitespace characters like `\n` at the end of each line
 Color_Printers = [x.strip() for x in Color_Printers] 
 
 with open('Monochrome_Printers.list') as f:
     Monochrome_Printers = f.readlines()
+f.close
 # you may also want to remove whitespace characters like `\n` at the end of each line
 Monochrome_Printers = [x.strip() for x in Monochrome_Printers]
 
