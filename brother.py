@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # This  script is Designed to  find the toner levels of brother printers.
 # It finds the toner levels by scrapping the webpage of the printers and 
 # then formats and displays that text in a webpage. 
@@ -48,7 +49,7 @@ f.close
 # you may also want to remove whitespace characters like `\n` at the end of each line
 Monochrome_Printers = [x.strip() for x in Monochrome_Printers]
 
-
+log_Message = " "
 try: 
 	f=open("path.txt", "r")
 	dirpath =f.read()
@@ -62,13 +63,18 @@ except IOError:
 write_out = open(dirpath +'/printers.html','w')
 
 message = """<html>
-<head><link rel='stylesheet' href='styles.css'/></head>
+<head><link rel='stylesheet' href='styles.css'/><meta http=equiz='refresh' content='1800'></head>
 <body><h1>Brother Printer Status Page</h1> """
 
 currentDT = datetime.datetime.now()
-currentDT.strftime("%a, %b %d, %Y")
-message = message + '<h1>'+ currentDT.strftime("%a, %b %d, %Y")+'</h1>'
+currenttime = currentDT.strftime("%a, %b %d, %Y, %H:%M")
+message = message + '<h1>'+ currenttime +'</h1>'
 message = message + "<table border='1'><tr>"
+try:
+
+	log=open("printers.log","w")
+except:
+	print "Error Opening Log"
 
 with open('ip_list.txt') as f:
         content = f.readlines()
@@ -78,7 +84,12 @@ print "Processing Please Wait"
 Number_of_Cells = 0
 for x in content:
         url='http://' + x +'/general/status.html'
-        response = requests.get(url)
+	try :
+        	response = requests.get(url)
+	except:
+		log_Message = log_Message + x + " is not alive skipping ip\n"
+		
+		continue
         soup = BeautifulSoup(response.text, "html.parser")
 	Model = soup.find('title').text
 
@@ -121,6 +132,8 @@ for x in content:
 		Yheight = float(Yheight)
 		Yprecent = (Yheight/56) * 100
 		Yellow_Remaining = round(Yprecent,0)
+		
+		log_Message = log_Message + x + " completed " + "B: " +str(Black_Remaining) + " C: " + str(Cyan_Remaining) + " M: " + str(Magenta_Remaining) + " Y: " + str(Yellow_Remaining) +"\n"
 
                         
 	if Model in Monochrome_Printers:
@@ -131,6 +144,7 @@ for x in content:
                 Bprecent = (Bheight/56) * 100
                 Black_Remaining = round(Bprecent,0)
 
+		log_Message = log_Message + x + " completed " + "B: " +str(Black_Remaining) +"\n"
 
 
 	if Number_of_Cells == 3:
@@ -162,16 +176,19 @@ for x in content:
 	if Black_Remaining is not None:
 		if Black_Remaining < 15.0:
 			message = message + "<li>Black Toner Remaining: <b class='blinking'>" + str(Black_Remaining) + "</b></li>"
+
 		else:
 			message = message + "<li>Black Toner Remaining: " + str(Black_Remaining) + "</li>"
 	if Cyan_Remaining is not None:
 		if Cyan_Remaining < 15.0:
 			message = message + "<li>Cyan Toner Remaining: <b class='blinking'>" + str(Cyan_Remaining) + "</b></li>"
+
 		else:
 			message = message + "<li>Cyan Toner Remaining: " + str(Cyan_Remaining) + "</li>"
 	if Magenta_Remaining is not None:
 		if Magenta_Remaining < 15.0:
 			message = message +  "<li>Magenta Toner Remaining: <b class='blinking'>" + str(Magenta_Remaining) + "</b></li>"
+
 		else:
 			message = message +  "<li>Magenta Toner Remaining: " + str(Magenta_Remaining) + "</li>"
 	if Yellow_Remaining is not None:
@@ -185,4 +202,6 @@ for x in content:
 message = message + "<tr><table></body></html>"
 write_out.write (message)
 write_out.close()
+log.write(log_Message)
+log.close()
 print "Processing Complete"
