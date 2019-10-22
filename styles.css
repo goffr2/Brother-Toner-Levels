@@ -1,0 +1,83 @@
+.blinking{
+    animation:blinkingText 1.0s infinite;
+    color:red;
+}
+@keyframes blinkingText{
+    0%{     color: red;    }
+    49%{    color: transparent; }
+    50%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: red;    }
+}
+body{
+	background-color: #0b3d94;
+}
+table{
+	background-color: #FFFFFF;
+	margin-left:auto;
+	margin-right:auto;
+}
+h1 {
+	color: #FFFFFF;
+	text-align: center;
+}
+progress.black {
+  color: #00000;
+  font-size: .6em;
+  line-height: 1.5em;
+  text-indent: .5em;
+  width: 15em;
+  height: 1.8em;
+  border: 1px solid #0063a6;
+  background: #fff;
+}
+
+progress.black::-moz-progress-bar { background: #000000; }
+progress.black::-webkit-progress-bar { background: #fff; }
+progress.black::-webkit-progress-value { background: #000000; }
+
+progress.Cyan {
+  color: #00ffff;
+  font-size: .6em;
+  line-height: 1.5em;
+  text-indent: .5em;
+  width: 15em;
+  height: 1.8em;
+  border: 1px solid #0063a6;
+  background: #fff;
+}
+
+progress.Cyan::-moz-progress-bar { background: #00ffff; }
+progress.Cyan::-webkit-progress-bar { background: #fff; }
+progress.Cyan::-webkit-progress-value { background: #00ffff; }
+
+progress.Magenta {
+  color: #FF00FF;
+  font-size: .6em;
+  line-height: 1.5em;
+  text-indent: .5em;
+  width: 15em;
+  height: 1.8em;
+  border: 1px solid #0063a6;
+  background: #fff;
+}
+
+progress.Magenta::-moz-progress-bar { background: #FF00FF; }
+progress.Magenta::-webkit-progress-bar { background: #fff; }
+progress.Magenta::-webkit-progress-value { background: #FF00FF; }
+
+progress.Yellow {
+  color: #FAE842;
+  font-size: .6em;
+  line-height: 1.5em;
+  text-indent: .5em;
+  width: 15em;
+  height: 1.8em;
+  border: 1px solid #0063a6;
+  background: #fff;
+}
+
+progress.Yellow::-moz-progress-bar { background: #FAE842; }
+progress.Yellow::-webkit-progress-bar { background: #fff; }
+progress.Yellow::-webkit-progress-value { background: #FAE842; }
+
