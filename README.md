@@ -25,4 +25,4 @@ The following models have been tested in my environment
 
 More models can be added to the script as needed
 If you have a model you want added please send me the
-toner status and contact pages
+toner status page
