@@ -4,7 +4,7 @@ This  script is Designed to  find the toner levels of brother printers.
 It finds the toner levels by scrapping the webpage of the printers and 
 then formats and displays that text in a webpage. 
   
-To use this script install python, pip, and use pip to install requests,
+To use this script install python2, pip2, and use pip2 to install requests,
 urllib3, and bs4. Make sure your ip_list.txt file is in the same Directory
 as your script as well as the Monochrome_Printers.list and Color_Printers.list files.
 The script will then generate a HTML page and save the page 
@@ -23,6 +23,11 @@ The following models have been tested in my environment
 - MFC-L2740DW series
 - DCP-L2540DW series
 - DCP-L2550DW series
+
 More models can be added to the script as needed
 If you have a model you want added please send me the
 toner status page
+
+example output: 
+
+![ Printer Page](https://i.imgur.com/qERZsUA.png)
