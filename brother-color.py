@@ -20,6 +20,7 @@
 # - HL-L5200DW series
 # - MFC-L2740DW series
 # - DCP-L2540DW series 
+# - DCP-L2550DW series
 #
 # More models can be added to the script as needed
 # If you have a model you want added please send me the
@@ -135,17 +136,19 @@ for x in content:
 		
 		log_Message = log_Message + x + " completed " + "B: " +str(Black_Remaining) + " C: " + str(Cyan_Remaining) + " M: " + str(Magenta_Remaining) + " Y: " + str(Yellow_Remaining) +"\n"
 
-                        
-	if Model in Monochrome_Printers:
+        elif Model in Monochrome_Printers:
 
-		Bheight = soup.find('img',{'class':'tonerremain'}).get('height')
-               	Bheight = Bheight.strip('px')
+                Bheight = soup.find('img',{'class':'tonerremain'}).get('height')
+                Bheight = Bheight.strip('px')
                 Bheight = float(Bheight)
                 Bprecent = (Bheight/56) * 100
                 Black_Remaining = round(Bprecent,0)
 
-		log_Message = log_Message + x + " completed " + "B: " +str(Black_Remaining) +"\n"
+                log_Message = log_Message + x + " completed " + "B: " +str(Black_Remaining) +"\n"
+                        
+        else:
 
+                print Model + " not found in Monochrome_Printers.list or Monochrome_Printers.list"
 
 	if Number_of_Cells == 3:
 
@@ -160,7 +163,7 @@ for x in content:
 		Order_Link = "<a href='https://www.amazon.com/s?k=MFC-L8900CDW+Toner&i=office-products&ref=nb_sb_noss' target='_blank'> Order TN436 </a>"
 	if Model == "Brother MFC-L3770CDW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN+227&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN227 </a>"
-	if Model =="Brother MFC-L2750DW series":
+	if Model =="Brother MFC-L2750DW series" or Model == "Brother DCP-L2550DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN760&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN760 </a>"
 	if Model =="Brother HL-L5200DW series":
 		Order_Link = "<a href='https://www.amazon.com/s?k=TN850&i=office-products&ref=nb_sb_noss_2' target='_blank'> Order TN850 </a>"

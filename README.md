@@ -22,7 +22,7 @@ The following models have been tested in my environment
 - HL-L5200DW series
 - MFC-L2740DW series
 - DCP-L2540DW series
-
+- DCP-L2550DW series
 More models can be added to the script as needed
 If you have a model you want added please send me the
 toner status page
